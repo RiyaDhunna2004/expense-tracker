@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="dashboard-page">
+  <div class="container">
+    <h2 class="mb-4">Borrow Records</h2>
+
+    <div class="card shadow p-4">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Person</th>
+            <th>Amount</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for record in records %}
+          <tr>
+            <td>{{ record.person_name }}</td>
+            <td>₹ {{ record.amount }}</td>
+            <td>{{ record.reason }}</td>
+            <td>{{ record.status }}</td>
+            <td>{{ record.date }}</td>
+            <td>
+              {% if record.status == "Pending" %}
+              <a
+                href="/mark-paid/{{ record._id }}"
+                class="btn btn-success btn-sm"
+              >
+                ✔ Mark Paid
+              </a>
+              {% else %}
+              <span class="badge bg-success"> Cleared </span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard-page">
+  <div class="container">
+
+    <h2 class="mb-4">Lent Money</h2>
+
+    <div class="card shadow p-4">
+
+      <form method="POST" action="/add-lent">
+
+        <div class="mb-3">
+          <label>Person Name</label>
+          <input
+            type="text"
+            name="person_name"
+            class="form-control"
+            placeholder="Who did you lend money to?"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label>Amount</label>
+          <input
+            type="number"
+            name="amount"
+            class="form-control"
+            placeholder="Enter amount"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label>Description</label>
+          <textarea
+            name="description"
+            class="form-control"
+            rows="3"
+            placeholder="Reason / Notes"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label>Date</label>
+          <input
+            type="date"
+            name="date"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-warning w-100">
+          Save Lent Record
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="dashboard-page">
+  <div class="container">
+    <h2 class="mb-4">Savings Goals</h2>
+
+    <!-- Add Goal Form -->
+    <div class="card shadow p-4 mb-4">
+      <h4>Add New Goal</h4>
+
+      <form method="POST" action="/add-savings-goal">
+        <div class="mb-3">
+          <label>Goal Name</label>
+          <input
+            type="text"
+            name="goal_name"
+            class="form-control"
+            placeholder="Example: Laptop, Bike"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label>Target Amount</label>
+          <input
+            type="number"
+            name="target_amount"
+            class="form-control"
+            placeholder="Enter target amount"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Goal</button>
+      </form>
+    </div>
+
+    <!-- Goals List -->
+    {% for goal in goals %}
+    <div class="card shadow p-4 mb-4">
+      <h4>{{ goal.goal_name }}</h4>
+
+      <p><strong>Target:</strong> ₹ {{ goal.target_amount }}</p>
+      <p><strong>Saved:</strong> ₹ {{ goal.saved_amount }}</p>
+      <div class="progress mb-3" style="height: 25px">
+        <div
+          class="progress-bar bg-success"
+          role="progressbar"
+          style="width: {{ (goal.saved_amount / goal.target_amount) * 100 }}%;"
+        >
+          {{ ((goal.saved_amount / goal.target_amount) * 100) | round(1) }}%
+        </div>
+      </div>
+
+      <p>Remaining: ₹ {{ goal.remaining_amount }}</p>
+      <p><strong>Remaining:</strong> ₹ {{ goal.remaining_amount }}</p>
+
+      <!-- Progress Bar -->
+      <div class="progress mb-3" style="height: 25px">
+        <div
+          class="progress-bar"
+          role="progressbar"
+          style="width: {{ (goal.saved_amount / goal.target_amount) * 100 }}%"
+        >
+          {{ ((goal.saved_amount / goal.target_amount) * 100)|round(1) }}%
+        </div>
+      </div>
+
+      <!-- Add Savings -->
+      <form method="POST" action="/update-savings/{{ goal._id }}">
+        <div class="input-group">
+          <input
+            type="number"
+            name="amount"
+            class="form-control"
+            placeholder="Add savings amount"
+            required
+          />
+          <button class="btn btn-success">Add Savings</button>
+        </div>
+      </form>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

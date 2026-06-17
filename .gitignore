@@ -1,0 +1,35 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+
+# Environment variables
+.env
+
+# Flask instance
+instance/
+
+# VS Code settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Reports generated
+*.pdf
+*.csv
+
+# Logs
+*.log
+
+# Mongo local dumps (if any)
+dump/
+
+# Temporary files
+*.tmp

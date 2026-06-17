@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard-page">
+  <div class="container">
+
+    <h2 class="mb-4">Edit Expense</h2>
+
+    <div class="card shadow p-4">
+
+      <form method="POST">
+
+        <div class="mb-3">
+          <label>Amount</label>
+          <input
+            type="number"
+            name="amount"
+            class="form-control"
+            value="{{ expense.amount }}"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label>Category</label>
+          <select name="category" class="form-control" required>
+            <option value="Food" {% if expense.category == "Food" %}selected{% endif %}>Food</option>
+            <option value="Travel" {% if expense.category == "Travel" %}selected{% endif %}>Travel</option>
+            <option value="Bills" {% if expense.category == "Bills" %}selected{% endif %}>Bills</option>
+            <option value="Shopping" {% if expense.category == "Shopping" %}selected{% endif %}>Shopping</option>
+            <option value="Entertainment" {% if expense.category == "Entertainment" %}selected{% endif %}>Entertainment</option>
+            <option value="Health" {% if expense.category == "Health" %}selected{% endif %}>Health</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label>Description</label>
+          <textarea
+            name="description"
+            class="form-control"
+            rows="3"
+          >{{ expense.description }}</textarea>
+        </div>
+
+        <div class="mb-3">
+          <label>Date</label>
+          <input
+            type="date"
+            name="date"
+            class="form-control"
+            value="{{ expense.date }}"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-warning w-100">
+          Update Expense
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

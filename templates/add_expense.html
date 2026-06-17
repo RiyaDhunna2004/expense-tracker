@@ -1,0 +1,76 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="dashboard-page">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow p-4">
+          <h2 class="mb-4 text-center">Add New Expense</h2>
+
+          <form method="POST" action="/add-expense">
+            <!-- Amount -->
+            <div class="mb-3">
+              <label>Amount</label>
+              <input
+                type="number"
+                name="amount"
+                class="form-control"
+                placeholder="Enter amount"
+                required
+              />
+            </div>
+
+            <!-- Category -->
+            <div class="mb-3">
+              <label>Category</label>
+              <select name="category" class="form-control" required>
+                <option value="">Select Category</option>
+                <option value="Food">Food</option>
+                <option value="Travel">Travel</option>
+                <option value="Bills">Bills</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Health">Health</option>
+              </select>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+              <label>Description</label>
+              <textarea
+                name="description"
+                class="form-control"
+                rows="3"
+                placeholder="Write description"
+              ></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label>Payment Mode</label>
+              <select name="payment_mode" class="form-control" required>
+                <option value="">Select Payment Mode</option>
+                <option value="Cash">Cash</option>
+                <option value="UPI">UPI</option>
+                <option value="Bank Transfer">Bank Transfer</option>
+                <option value="Card">Card</option>
+              </select>
+            </div>
+
+            <!-- Date -->
+            <div class="mb-3">
+              <label>Date</label>
+              <input type="date" name="date" class="form-control" required />
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-success w-100">
+              Add Expense
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard-page">
+  <div class="container">
+
+    <h2 class="mb-4">Recurring Expenses</h2>
+
+    <!-- Add Form -->
+    <div class="card shadow p-4 mb-4">
+      <h4>Add Recurring Expense</h4>
+
+      <form method="POST" action="/add-recurring">
+
+        <div class="mb-3">
+          <label>Amount</label>
+          <input
+            type="number"
+            name="amount"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label>Category</label>
+          <input
+            type="text"
+            name="category"
+            class="form-control"
+            placeholder="Rent, Netflix, Gym"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label>Description</label>
+          <textarea
+            name="description"
+            class="form-control"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label>Frequency</label>
+          <select name="frequency" class="form-control" required>
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+          </select>
+        </div>
+
+        <button class="btn btn-dark">
+          Add Recurring Expense
+        </button>
+
+      </form>
+    </div>
+
+    <!-- Recurring List -->
+    {% for item in data %}
+    <div class="card shadow p-4 mb-3">
+
+      <h5>{{ item.category }}</h5>
+
+      <p><strong>Amount:</strong> ₹ {{ item.amount }}</p>
+      <p><strong>Description:</strong> {{ item.description }}</p>
+      <p><strong>Frequency:</strong> {{ item.frequency }}</p>
+
+      <a
+        href="/delete-recurring/{{ item._id }}"
+        class="btn btn-danger btn-sm"
+      >
+        Delete
+      </a>
+
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+{% endblock %}

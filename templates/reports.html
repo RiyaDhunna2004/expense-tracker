@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard-page">
+  <div class="container">
+
+    <h2 class="mb-4">Expense Reports</h2>
+
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+
+      <div class="col-md-4">
+        <div class="card shadow p-3">
+          <h5>Total Expenses</h5>
+          <h3>₹ {{ total_expense }}</h3>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow p-3">
+          <h5>Monthly Budget</h5>
+          <h3>₹ {{ monthly_budget }}</h3>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow p-3">
+          <h5>Remaining Budget</h5>
+          <h3>₹ {{ remaining_budget }}</h3>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Expense History Table -->
+    <div class="card shadow p-4 mb-4">
+      <h4>Expense History</h4>
+
+      <table class="table table-bordered mt-3">
+        <thead>
+          <tr>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for expense in expenses %}
+          <tr>
+            <td>₹ {{ expense.amount }}</td>
+            <td>{{ expense.category }}</td>
+            <td>{{ expense.description }}</td>
+            <td>{{ expense.date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Export Buttons -->
+    <div class="mb-4">
+      <a href="/download-pdf" class="btn btn-danger me-2">
+        Download PDF
+      </a>
+
+      <a href="/download-csv" class="btn btn-success">
+        Download CSV
+      </a>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

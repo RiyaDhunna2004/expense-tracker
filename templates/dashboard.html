@@ -1,0 +1,157 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="dashboard-page">
+  <div class="container">
+    <h3 class="mb-4">Welcome, {{ session['name'] }}</h3>
+
+    <!-- Hero -->
+    <div class="hero-box">
+      <h2>Total Balance Overview</h2>
+      <p>Track your expenses, income and savings smartly.</p>
+    </div>
+
+    <!-- Budget Form -->
+    <div class="card shadow p-4 mb-4">
+      <h4>Set Monthly Budget</h4>
+      <form action="/set-budget" method="POST">
+        <input
+          type="number"
+          name="monthly_budget"
+          class="form-control mb-3"
+          placeholder="Enter Monthly Budget"
+          required
+        />
+        <button type="submit" class="btn btn-primary">Save Budget</button>
+      </form>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-4">
+        <div class="summary-card expense-card">
+          <h5>Total Expenses</h5>
+          <h3>₹ {{ total_expense }}</h3>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="summary-card budget-card">
+          <h5>Monthly Budget</h5>
+          <h3>₹ {{ monthly_budget }}</h3>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="summary-card income-card">
+          <h5>Total Income</h5>
+          <h3>₹ {{ total_income }}</h3>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="summary-card carry-card">
+          <h5>Carry Forward</h5>
+          <h3>₹ {{ carry_forward }}</h3>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="summary-card borrow-card">
+          <h5>Pending Borrow</h5>
+          <h3>₹ {{ pending_borrow }}</h3>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="summary-card remaining-card">
+          <h5>Remaining Budget</h5>
+          <h3>₹ {{ remaining_budget }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Expense Table -->
+    <div class="card shadow p-4 mb-4">
+      <h4>Recent Expenses</h4>
+
+      <table class="table table-bordered mt-3">
+        <thead>
+          <tr>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for expense in expenses %}
+          <tr>
+            <td>₹ {{ expense.amount }}</td>
+            <td>{{ expense.category }}</td>
+            <td>{{ expense.description }}</td>
+            <td>{{ expense.date }}</td>
+            <td>
+              <a
+                href="/edit-expense/{{ expense._id }}"
+                class="btn btn-sm btn-warning"
+              >
+                ✏ Edit
+              </a>
+
+              <a
+                href="/delete-expense/{{ expense._id }}"
+                class="btn btn-sm btn-danger"
+              >
+                🗑 Delete
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Charts -->
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="chart-box">
+          <h4>Category-wise Expenses</h4>
+          <canvas id="categoryChart"></canvas>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="chart-box">
+          <h4>Monthly Expense Trend</h4>
+          <canvas id="monthlyChart"></canvas>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="chart-box">
+          <h4>Monthly Income Trend</h4>
+          <canvas id="incomeChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions text-center">
+      <a href="/add-expense" class="btn btn-success"> 💸 Add Expense </a>
+      <a href="/add-income" class="btn btn-primary"> 💰 Add Income </a>
+      <a href="/add-borrow" class="btn btn-danger"> 🤝 Add Borrow </a>
+      <a href="/borrow-records" class="btn btn-warning"> 📋 Borrow Records </a>
+      <a href="/monthly-history" class="btn btn-info"> 📅 Monthly History </a>
+      <a href="/reports" class="btn btn-dark"> 📊 View Reports </a>
+      <a href="/savings-goals" class="btn btn-secondary"> 🎯 Savings Goals </a>
+      <a href="/recurring-expenses" class="btn btn-dark"
+        >🔁 Recurring Expenses</a
+      >
+      <a href="/add-lent" class="btn btn-warning"> 💵 Add Lent </a>
+      <a href="/lent-records" class="btn btn-info"> 📒 Lent Records </a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

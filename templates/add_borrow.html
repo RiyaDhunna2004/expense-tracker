@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard-page">
+  <div class="container">
+
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+
+        <div class="card shadow p-4">
+          <h2 class="mb-4 text-center">Add Borrow Record</h2>
+
+          <form method="POST" action="/add-borrow">
+
+            <!-- Person Name -->
+            <div class="mb-3">
+              <label>Person Name</label>
+              <input
+                type="text"
+                name="person_name"
+                class="form-control"
+                placeholder="Example: Papa, Friend"
+                required
+              />
+            </div>
+
+            <!-- Amount -->
+            <div class="mb-3">
+              <label>Amount</label>
+              <input
+                type="number"
+                name="amount"
+                class="form-control"
+                placeholder="Enter amount"
+                required
+              />
+            </div>
+
+            <!-- Reason -->
+            <div class="mb-3">
+              <label>Reason</label>
+              <textarea
+                name="reason"
+                class="form-control"
+                rows="3"
+                placeholder="Reason for borrowing"
+              ></textarea>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-danger w-100">
+              Save Borrow Record
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="dashboard-page">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow p-4">
+          <h2 class="mb-4 text-center">Add Income</h2>
+
+          <form method="POST" action="/add-income">
+            <!-- Amount -->
+            <div class="mb-3">
+              <label>Amount</label>
+              <input
+                type="number"
+                name="amount"
+                class="form-control"
+                placeholder="Enter amount"
+                required
+              />
+            </div>
+
+            <!-- Source -->
+            <div class="mb-3">
+              <label>Source</label>
+              <input
+                type="text"
+                name="source"
+                class="form-control"
+                placeholder="Example: Parents, Uncle, Salary"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label>Payment Mode</label>
+              <select name="payment_mode" class="form-control" required>
+                <option value="">Select Payment Mode</option>
+                <option>Cash</option>
+                <option>UPI</option>
+                <option>Bank Transfer</option>
+                <option>Card</option>
+              </select>
+            </div>
+
+            <!-- Income Type -->
+            <div class="mb-3">
+              <label>Income Type</label>
+              <select name="income_type" class="form-control" required>
+                <option value="">Select Type</option>
+                <option value="Parents">Parents</option>
+                <option value="Gift">Gift</option>
+                <option value="Salary">Salary</option>
+                <option value="Freelancing">Freelancing</option>
+                <option value="Refund">Refund</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- Date -->
+            <div class="mb-3">
+              <label>Date</label>
+              <input type="date" name="date" class="form-control" required />
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-success w-100">
+              Add Income
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="dashboard-page">
+  <div class="container">
+    <h2 class="mb-4">Monthly Financial History</h2>
+
+    <div class="card shadow p-4">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Budget Goal</th>
+            <th>Actual Income</th>
+            <th>Actual Expenses</th>
+            <th>Borrowed</th>
+            <th>Net Balance</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for item in history %}
+          <tr>
+            <td>{{ item.month }}</td>
+            <td>₹ {{ item.budget }}</td>
+            <td>₹ {{ item.income }}</td>
+            <td>₹ {{ item.expenses }}</td>
+            <td>₹ {{ item.borrow }}</td>
+            <td>₹ {{ item.final_balance }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
