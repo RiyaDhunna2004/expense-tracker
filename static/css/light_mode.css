@@ -28,6 +28,20 @@ body.light-mode .navbar-brand {
     color: black !important;
 }
 
+/* Auth page buttons */
+body.light-mode .navbar .auth-btn-login {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white !important;
+    border: none !important;
+    font-weight: 600;
+    border-radius: 12px;
+}
+
+body.light-mode .auth-btn-signup {
+    border-radius: 12px;
+    font-weight: 600;
+}
+
 /* Hero */
 body.light-mode .hero-box {
     background: linear-gradient(135deg, #667eea, #764ba2);
@@ -134,16 +148,5 @@ body.light-mode .navbar .btn-reports {
 body.light-mode .navbar .btn-logout {
     background: linear-gradient(135deg, #ff6b6b, #ee5253);
     border: none !important;
-    color: white !important;
-}
-
-body.light-mode .navbar .btn-outline-light {
-    color: black !important;
-    border: 1px solid black !important;
-    background: white !important;
-}
-
-body.light-mode .btn-outline-light:hover {
-    background: black !important;
     color: white !important;
 }
