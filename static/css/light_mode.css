@@ -137,3 +137,14 @@ body.light-mode .navbar .btn-logout {
     border: none !important;
     color: white !important;
 }
+
+body.light-mode .btn-outline-light {
+    color: black !important;
+    border: 1px solid black !important;
+    background: white !important;
+}
+
+body.light-mode .btn-outline-light:hover {
+    background: black !important;
+    color: white !important;
+}
