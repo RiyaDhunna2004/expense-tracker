@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="dashboard-page">
+  <div class="container">
+    <div class="card shadow p-4">
+
+      <h2>Edit Goal</h2>
+
+      <form method="POST">
+
+        <div class="mb-3">
+          <label>Goal Name</label>
+          <input
+            type="text"
+            name="goal_name"
+            class="form-control"
+            value="{{ goal.goal_name }}"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label>Target Amount</label>
+          <input
+            type="number"
+            name="target_amount"
+            class="form-control"
+            value="{{ goal.target_amount }}"
+            required
+          />
+        </div>
+
+        <button class="btn btn-success">
+          Update Goal
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -336,7 +336,7 @@ def add_savings_goal():
         "saved_amount": 0
     })
 
-    return redirect("/dashboard")
+    return redirect("/savings-goals")
 
 # Update Savings Progress
 @expense_bp.route("/update-savings/<id>", methods=["POST"])
@@ -355,7 +355,7 @@ def update_savings(id):
         }
     )
 
-    return redirect("/dashboard")
+    return redirect("/savings-goals")
 
 # View Savings Goals
 @expense_bp.route("/savings-goals")
@@ -369,14 +369,38 @@ def savings_goals():
 
     for goal in goals:
         goal["_id"] = str(goal["_id"])
-        goal["remaining_amount"] = (
-            goal["target_amount"] - goal["saved_amount"]
-        )
+        goal["remaining_amount"] = max(0, goal["target_amount"] - goal["saved_amount"])
 
     return render_template(
         "savings_goals.html",
         goals=goals
     )
+    
+@expense_bp.route("/edit-goal/<id>", methods=["GET", "POST"])
+def edit_goal(id):
+    goal = savings_collection.find_one({"_id": ObjectId(id)})
+
+    if request.method == "POST":
+        savings_collection.update_one(
+            {"_id": ObjectId(id)},
+            {
+                "$set": {
+                    "goal_name": request.form["goal_name"],
+                    "target_amount": float(request.form["target_amount"])
+                }
+            }
+        )
+        return redirect("/savings-goals")
+
+    return render_template("edit_goal.html", goal=goal)
+
+
+@expense_bp.route("/delete-goal/<id>")
+def delete_goal(id):
+    savings_collection.delete_one(
+        {"_id": ObjectId(id)}
+    )
+    return redirect("/savings-goals")
     
 # Monthly History
 @expense_bp.route("/monthly-history")
